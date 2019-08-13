@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 你好哇，罗大可！
 subtitle:
 description:
 keywords:
-author: John Doe
+author: LokiiArt
 language: en
 timezone:
 
@@ -62,8 +62,12 @@ tag_map:
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
-date_format: YYYY-MM-DD
+date_format: YYYY 年 MM 月 DD 日
 time_format: HH:mm:ss
+
+default_post_title: //hexo.io/docs/configuration.html
+comments:
+  disqus_shortname: lokiiart-blog
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -73,7 +77,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: hollow
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
