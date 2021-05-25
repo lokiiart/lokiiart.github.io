@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Linux启动记录 | 你好哇，罗大可！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="从0x57到firefox你一无所知">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux启动记录">
+<meta property="og:url" content="http://yoursite.com/2019/10/17/Linux启动记录/index.html">
+<meta property="og:site_name" content="你好哇，罗大可！">
+<meta property="og:description" content="从0x57到firefox你一无所知">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2021-05-25T08:12:11.477Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux启动记录">
+<meta name="twitter:description" content="从0x57到firefox你一无所知">
+  
+    <link rel="alternate" href="/atom.xml" title="你好哇，罗大可！" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">你好哇，罗大可！</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux启动记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/17/Linux启动记录/" class="article-date">
+  <time datetime="2019-10-17T07:40:49.000Z" itemprop="datePublished">2019 年 10 月 17 日</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux启动记录
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>从0x57到firefox<br>你一无所知</p>
+<a id="more"></a>
+
+<p>作为程序员，刚接触Linux的时候，就老是想着看源码。毕竟Linus大佬也是这样说，</p>
+<p>  Talk is cheap, show me the code.</p>
+<p>所以，你现在正在使用的那个核心源码我们不说，我们都知道，你看的速度跟不上它更新的速度。<br>就说，unix v6/linux-1.1/minix 这些源码你这么莽撞地去看，能理清个线索就不错了。</p>
+<p>总的来说，就是傻傻看代码其实是不行的。要想理清楚这整个流程，我们首先要从作为用户开始。大家都知道，计算机是分层的，每一层都有上一层为它服务。那我们日常的使用中，到底有哪些服务在默默地付出呢？</p>
+<p>硬件就是个讲盒子，我讲不明白也不懂，就讲软件。从系统通电开始：</p>
+<ul>
+<li>BIOS自检，为我们占领内存，引导出bootloader和kernel</li>
+<li>bootloader现在用的是grub 2，曾经见过lilo/grub</li>
+<li>加载kernel</li>
+<li>kernel调出shell（getty)</li>
+<li>getty 加载Xorg</li>
+</ul>
+<p>写出来就发现其实还是不明白。今天就是大致了解了startx的工作流程。从命令行到桌面是一个飞跃啊，到底怎么来的，今天摸了一下。</p>
+<p>具体的实验过程是这样的。</p>
+<ul>
+<li>进入tty，之后先别startx。这会儿你在tty1下面</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo X -retro</span><br></pre></td></tr></table></figure>
+
+<p>[注意]不加-retro也可以，但是现在的xorg不知道为什么，进入之后就是黑乎乎的一片，你可能觉得自己当机了。加上-retro会有一个十字架的鼠标，你发现自己进去了。</p>
+<p>[注意] X就是Xorg的软链接</p>
+<ul>
+<li>进入tty2或者tty3，登录，然后打开xterm或者urxvt，或者xclock之类的，方式如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">env DISPLAY=:0 urxvt</span><br><span class="line">或</span><br><span class="line">xterm -display :0</span><br></pre></td></tr></table></figure>
+
+<p>然后再转到tty1或者那个显示x的终端那边，就可以看到你的实验成果了。</p>
+<p>这次实验让我彻底感受到了，X Window是怎么一回事，以前常说X的Server/Client是反的，这么体验一下，你就不会弄错了。</p>
+<p>但这只是从用户角度，作为一名开发探险者，你应该稍稍浏览一下xlib的文档。GTK，Qt这些强大的图形库都是基于xlib以及后面的x window的理念的。</p>
+<p>在稍稍理解了Linux核心是做什么的之后，也要了解一下我们日常使用最多的UI库到底源自何方。</p>
+<p>PS：昨天炫耀了pstree有多么干净，今天把每个进程的作用记录一下吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">[1msystemd,1[m</span><br><span class="line">  |-systemd-journal,304             系统日志</span><br><span class="line">  |-lvmetad,310 -f                  文件管理</span><br><span class="line">  |-systemd-udevd,322               设备管理</span><br><span class="line">  |-systemd-timesyn,388             时间同步</span><br><span class="line">  |   `-&#123;systemd-timesyn&#125;,406</span><br><span class="line">  |-dbus-daemon,407 --system --address=systemd: --nofork --nopidfile -...         进程间通信</span><br><span class="line">  |-[1mlogin,410[m                      </span><br><span class="line">  |   `-[1mfish,435[m</span><br><span class="line">  |       `-[1mstartx,8325[m /usr/bin/startx</span><br><span class="line">  |           `-[1mxinit,8347[m /home/loki/.xinitrc -- /etc/X11/xinit/xserverrc :0 vt...</span><br><span class="line">  |               |-Xorg,8348 -nolisten tcp :0 vt1 -keeptty -auth /tmp/serverauth.43g0hYyqM1</span><br><span class="line">  |               |   |-&#123;Xorg&#125;,8349             X window Server</span><br><span class="line">  |               |   `-&#123;Xorg&#125;,8350</span><br><span class="line">  |               `-[1msh,8352[m /home/loki/.xinitrc</span><br><span class="line">  |                   |-sh,8381 /home/loki/.xinitrc</span><br><span class="line">  |                   `-[1mdwm,8383[m        dwm 窗口管理器as X Window Client</span><br><span class="line">  |                       `-[1murxvt,10299[m</span><br><span class="line">  |                           `-[1mfish,10300[m</span><br><span class="line">  |                               |-[1mpstree,11167[m -apnh</span><br><span class="line">  |                               `-xsel,11168 -b</span><br><span class="line">  |-systemd-logind,413</span><br><span class="line">  |-systemd,429 --user</span><br><span class="line">  |   |-(sd-pam),430        权限管理（好像只有Arch有，有人提了bug)</span><br><span class="line">  |   |-dbus-daemon,506 --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only</span><br><span class="line">  |   |-at-spi-bus-laun,524           gtk的依赖服务，但是是用来做Accessibilty的</span><br><span class="line">  |   |   |-&#123;at-spi-bus-laun&#125;,525     向我这种用法当然不需要，但是它却顽固地在这里</span><br><span class="line">  |   |   |-&#123;at-spi-bus-laun&#125;,526     可以杀死，有人报了bug。</span><br><span class="line">  |   |   |-&#123;at-spi-bus-laun&#125;,528     但是杀死随便开个gtk程序，它就又起来了。</span><br><span class="line">  |   |   `-dbus-daemon,530 --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 3</span><br><span class="line">  |   |-at-spi2-registr,539 --use-gnome-session</span><br><span class="line">  |   |   |-&#123;at-spi2-registr&#125;,540</span><br><span class="line">  |   |   `-&#123;at-spi2-registr&#125;,541</span><br><span class="line">  |   |-ibus-portal,8371</span><br><span class="line">  |   |   |-&#123;ibus-portal&#125;,8372</span><br><span class="line">  |   |   `-&#123;ibus-portal&#125;,8376</span><br><span class="line">  |   `-dconf-service,9561</span><br><span class="line">  |       |-&#123;dconf-service&#125;,9562</span><br><span class="line">  |       `-&#123;dconf-service&#125;,9563                                            无线网卡</span><br><span class="line">  |-wpa_supplicant,764 -q -B -P /run/wpa_supplicant-wlp3s0.pid -i wlp3s0 -D nl80211,wext ...</span><br><span class="line">  |-dhcpcd,1038 -4 -q -t 30 -L wlp3s0               ip分配</span><br><span class="line">  |-watchman,1154 --no-pretty get-sockname       facebook的watchman，rn官方推荐，我也是懒得关</span><br><span class="line">  |   |-&#123;watchman&#125;,1155</span><br><span class="line">  |   `-&#123;watchman&#125;,1175</span><br><span class="line">  |-ibus-daemon,8354 --xim -d                    输入法</span><br><span class="line">  |-ibus-x11,8368 --kill-daemon</span><br><span class="line">  |   |-&#123;ibus-x11&#125;,8390</span><br><span class="line">  |   |-&#123;ibus-x11&#125;,8392</span><br><span class="line">  |   `-&#123;ibus-x11&#125;,8393</span><br><span class="line">  `-bash,9475                                 markdown编辑器在用</span><br><span class="line">      `-Typora,9483</span><br></pre></td></tr></table></figure>
+
+<p>嗯，就是这些了。玩累了，要做项目了今天晚上。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/17/Linux启动记录/" data-id="ckp3rgsam00014ftc6dntkam2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/05/25/又是新的一年/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          又是新的一年
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/16/Linux折腾小记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux折腾小记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">-心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情/">心情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/操作系统原理/">操作系统原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/立志/">立志</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编译原理/">编译原理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/心情/" style="font-size: 10px;">-心情</a> <a href="/tags/Linux/" style="font-size: 16.67px;">Linux</a> <a href="/tags/心情/" style="font-size: 20px;">心情</a> <a href="/tags/操作系统原理/" style="font-size: 10px;">操作系统原理</a> <a href="/tags/立志/" style="font-size: 13.33px;">立志</a> <a href="/tags/编译原理/" style="font-size: 10px;">编译原理</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/25/又是新的一年/">又是新的一年</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/17/Linux启动记录/">Linux启动记录</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/16/Linux折腾小记/">Linux折腾小记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/01/求知欲的界限/">求知欲的界限</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/17/对vim的执念/">对vim的执念</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 LokiiArt<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
