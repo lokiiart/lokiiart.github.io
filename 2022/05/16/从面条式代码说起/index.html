@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>从面条式代码说起 | 你好哇，罗大可！</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="面条式的代码是一个贬义词，一直以来，我连这个贬义词都没用对。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从面条式代码说起">
+<meta property="og:url" content="http://example.com/2022/05/16/%E4%BB%8E%E9%9D%A2%E6%9D%A1%E5%BC%8F%E4%BB%A3%E7%A0%81%E8%AF%B4%E8%B5%B7/index.html">
+<meta property="og:site_name" content="你好哇，罗大可！">
+<meta property="og:description" content="面条式的代码是一个贬义词，一直以来，我连这个贬义词都没用对。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-16T04:29:41.000Z">
+<meta property="article:modified_time" content="2022-05-16T05:39:20.897Z">
+<meta property="article:author" content="LokiiArt">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="你好哇，罗大可！" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">你好哇，罗大可！</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-从面条式代码说起" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/05/16/%E4%BB%8E%E9%9D%A2%E6%9D%A1%E5%BC%8F%E4%BB%A3%E7%A0%81%E8%AF%B4%E8%B5%B7/" class="article-date">
+  <time class="dt-published" datetime="2022-05-16T04:29:41.000Z" itemprop="datePublished">2022-05-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      从面条式代码说起
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>面条式的代码是一个贬义词，一直以来，我连这个贬义词都没用对。</p>
+<span id="more"></span>
+
+<p>长久以来我都被这些编程范式困扰着，以至于无法在编辑器里面敲下一行自己满意的代码。直到我了解了一点编程语言的历史。</p>
+<h3 id="所谓”面条式的代码”和结构化编程"><a href="#所谓”面条式的代码”和结构化编程" class="headerlink" title="所谓”面条式的代码”和结构化编程"></a>所谓”面条式的代码”和结构化编程</h3><p>程序&#x3D;数据+算法<br>C语言里面有三种我们早已习以为常的结构，循序，选择和循环。在这些结构提出之前，逻辑间的跳转都是靠GOTO来完成的。可以想见，稍微复杂一点的逻辑必定看不到头尾也理不清头绪，于是我们谓之”面条式的代码”，而从C语言之后，在三种逻辑结构的帮助下，我们实现了无GOTO的程序编写模式，已经不大能够写出所谓”面条式的代</p>
+<p>数据上面，我们也试图摒弃全局变量，改为局部变量和按值传递的形式。主要是全局变量的变化实在很难追踪。</p>
+<h3 id="子程序和库"><a href="#子程序和库" class="headerlink" title="子程序和库"></a>子程序和库</h3><p>有了结构的帮助，我们的程序开始慢慢复杂，有一些逻辑老是重写，显得无趣且无聊，这个时候我们就写了一些库函数，方便我们调用。我们写的主程序是调用方，那些库函数是被调用方，实践证明，我们的代码开始可以复用了。</p>
+<h3 id="主程序和面向对象"><a href="#主程序和面向对象" class="headerlink" title="主程序和面向对象"></a>主程序和面向对象</h3><p>时间久了我们又发现，我们写的主程序逻辑也有很多部分是重复的，那怎么办，主程序不像子程序，只是实现很小的一部分功能，它的代码复用明显没有那么简单。</p>
+<p>但确实，它的整体框架又没有太大的变化，比如我们的web后端，基本逻辑就是，接受请求-&gt;过滤请求-&gt;处理请求-&gt;l连接数据库-&gt;请求数据-&gt;返回数据-&gt;格式化数据-&gt;响应请求。无论是商城还是博客还是论坛，这个基本逻辑框架没有变，但除了复制粘贴，我们并没有更好的复用这一段逻辑的方法，直到我们有了面向对象。</p>
+<p>面向对象的多态使得我们的主程序变得可以复用了，这段可以复用的主程序我们一般称之为框架。</p>
+<h3 id="常规编程范式的终结"><a href="#常规编程范式的终结" class="headerlink" title="常规编程范式的终结"></a>常规编程范式的终结</h3><p>也因此，面向对象成为程序员的基本功之一。后面函数式编程，面向切面编程什么的火了，却不是每个程序员都必须掌握的了。</p>
+<p>说白了，这些编程范式到底就是为了少写几行代码，面向对象已经够用了。</p>
+<h3 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h3><p>那么函数式编程又为什么火了，因为并发。在面向对象也好，在面向过程也好，程序里面都有数据，有数据就意味着数据会改变，也就是程序或者说对象有状态，有了并发之后，状态的改变实在无从捕捉。SICP里面第二章的”流”介绍了用纯函数表达状态的方法，我还在学习中。</p>
+<p>顺便说一下，我以为面向对象的三大特性之一的封装，也就是把状态设成private，是为了让你在set函数里面处理线程安全的，不然真的很难理解我为什么不直接写成public。</p>
+<h3 id="LISP"><a href="#LISP" class="headerlink" title="LISP"></a>LISP</h3><p>说到函数式编程，不得不提一下LISP。什么代码即数据，什么lambda calculus，概念高大上，其实理解了也不过如此。我要说的是LISP写成那个样子的理由，在我看来，lisp表示数据或者表示代码都是不自然的，最自然的是如下这段代码</p>
+<pre><code>(not (or p (and (not p) q)))
+</code></pre>
+<p>这是数理逻辑我们常见的一段表达式，这大概是最符合直觉的写法了吧。而lisp最初的发明也就是麦卡锡组织了一个夏令营试图开发一部定理证明机，这么一想，lisp括弧的来源越发自然了。</p>
+<h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p>编程语言的探索只是计算机的一小部分，正如王垠对编译器作用的理解。程序员理解编译器原理就像厨师理解锅的构成，锅的构成当然对厨师炒出一盘好菜有帮助，但能做一口好锅的铁匠并不一定是能炒出一桌好菜的厨师这是不言自明的。</p>
+<p>对程序员来说，了解编程语言甚至比了解编译器原理要更重要一些，它就像厨师的手，你通过它去和编译器沟通，通过它去和操作系统沟通，通过它去调用库和框架，通过它去展现自己的想法。但一个魔术师也不一定能炒一桌好菜，重要的还是实践和你眼下要解决的问题。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/05/16/%E4%BB%8E%E9%9D%A2%E6%9D%A1%E5%BC%8F%E4%BB%A3%E7%A0%81%E8%AF%B4%E8%B5%B7/" data-id="cl38aqq360000o2qweqhq4y1n" data-title="从面条式代码说起" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/05/10/SICP%E7%95%A5%E8%AF%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SICP略读</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/05/16/%E4%BB%8E%E9%9D%A2%E6%9D%A1%E5%BC%8F%E4%BB%A3%E7%A0%81%E8%AF%B4%E8%B5%B7/">从面条式代码说起</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/10/SICP%E7%95%A5%E8%AF%BB/">SICP略读</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/09/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F%E4%B8%8E%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/">编程范式与自然语言</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/08/%E4%B8%80%E9%81%8D%E5%8F%88%E4%B8%80%E9%81%8D%E7%9A%84%E5%BC%80%E5%A7%8B/">一遍又一遍的开始</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/07/%E6%9C%80%E8%BF%91%E7%94%9F%E6%B4%BB%E7%9A%84%E5%9B%B0%E5%A2%83/">最近生活的困境</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 LokiiArt<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
